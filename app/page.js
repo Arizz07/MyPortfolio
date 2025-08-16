@@ -33,7 +33,7 @@ export default function Home() {
           </div>
           <div id="about" className="content flex justify-center items-center bg-sky-100 text-black rounded-lg ml-26 h-80 w-120 shadow-md mt-10">
             <p className="text-md px-4 py-8 text-justify">
-              Hey, I'm Ariizz. I'm 21 years old and I live in Puttur. I'm a Full Stack Developer. <br /><br />
+              Hey, I&apos;m Ariizz. I&apos;m 21 years old and I live in Puttur. I&apos;m a Full Stack Developer. <br /><br />
               I studied Applied Computer Sciences at University of Mangalore. I chose the Full Stack WebDeveloping Course to learn more about Web Developing using MERN. <br />
               <br />
               During my course     I studied Applied Computer Sciences at University of Mangalore. I chose the Full Stack Web Developing Course to learn more about web development using the MERN stack. During my course i have created so many projects

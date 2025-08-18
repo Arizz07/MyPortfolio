@@ -1,31 +1,72 @@
 "use client"
-import React from 'react'
-import Link from 'next/link'
-import { useTheme } from 'next-themes'
-import { MoonIcon, SunIcon } from "@heroicons/react/24/solid";
-
+import React, { useState } from "react";
+import Link from "next/link";
+import { MoonIcon } from "@heroicons/react/24/solid";
+import { FaBars } from "react-icons/fa";
 
 function Navbar() {
- 
+  const [show, setShow] = useState(false);
+
   return (
-    <>
-    <nav className='flex justify-between  bg-sky-500/50 p-2'>
-        <div className='p-1 font-semibold tracking-widest px-2 text-xl'>
-        <Link href={'/'}>Ariizz</Link>
+    <div className="relative"> {/* 👈 wrapper relative for dropdown */}
+      <nav className="flex justify-between items-center bg-sky-500/50 p-2">
+        {/* Logo */}
+        <div className="p-1 font-semibold tracking-widest px-2 text-xl">
+          <Link href={"/"}>Ariizz</Link>
         </div>
-        <div className='flex gap-8 mr-4 '>
-          <div className="flex gap-4 sections mt-1 mx-4 ">
-            <span className='px-2 hover:font-semibold hover:border-b-4 hover:transition duration-200 hover:border-blue-300'><Link href={'#about'}>About</Link></span>
-            <span className='px-2 hover:font-semibold hover:border-b-4 hover:transition duration-200 hover:border-blue-300'><Link href={'#contact'}>Contact</Link></span>
-            <span className='px-2 hover:font-semibold hover:border-b-4 hover:transition duration-200 hover:border-blue-300'><Link href={'/about'}>CV</Link></span>
-          </div>
-         <button>
-          <MoonIcon className='w-6 h-6 '/>
-         </button>
+
+       {/* Desktop Menu */}
+<div className="hidden md:flex gap-10 mr-6 items-center text-lg font-medium">
+  <Link
+    href={"#about"}
+    className="relative group"
+  >
+    About
+    <span className="absolute left-0 -bottom-1 w-0 h-[4px] bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+  </Link>
+
+  <Link
+    href={"#contact"}
+    className="relative group"
+  >
+    Contact
+    <span className="absolute left-0 -bottom-1 w-0 h-[4px] bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+  </Link>
+
+  <Link
+    href={"/about"}
+    className="relative group"
+  >
+    CV
+    <span className="absolute left-0 -bottom-1 w-0 h-[4px] bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+  </Link>
+</div>
+
+
+        {/* Right side */}
+        <div className="flex items-center gap-4">
+          {/* Dark Mode Button */}
+          <button>
+            <MoonIcon className="w-6 h-6" />
+          </button>
+
+          {/* Mobile Menu Button */}
+          <button onClick={() => setShow(!show)} className="md:hidden">
+            <FaBars size={22} />
+          </button>
         </div>
-    </nav>
-    </>
-  )
+      </nav>
+
+      {/* Mobile Dropdown Menu */}
+      {show && (
+        <div className="md:hidden flex flex-col bg-sky-500/50 text-black absolute top-14 right-4 w-40 rounded-lg shadow-md p-4 space-y-3 z-50">
+          <Link href={"#about"} onClick={() => setShow(false)}>About</Link>
+          <Link href={"#contact"} onClick={() => setShow(false)}>Contact</Link>
+          <Link href={"/about"} onClick={() => setShow(false)}>CV</Link>
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default Navbar
+export default Navbar;
